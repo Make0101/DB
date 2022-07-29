@@ -1,24 +1,26 @@
+create database cloth;
+
 create table model(
  id serial,
- description char(400),
+ description char(255),
  price int,
  price_discount int,
  price_promo int,
  name char(20),
  in_stock char(3),
  constraint model_prim_key primary key(id),
- constraint img_f_key foreign key (img_id) references img(id) match simple on update cascade on delete no action,
- constraint category_f_key foreign key (category_id) references category(id) match simple on update cascade on delete no action
+ constraint img_f_key foreign key (img_id) references img(id),
+ constraint category_f_key foreign key (category_id) references category(id)
 );
 
 create table sub_imgs(
-constraint pid foreign key references model(id) match simple on update cascade,
-constraint imgs_id foreign key references imgs(id) match simple on update cascade
+constraint pid foreign key references model(id),
+constraint imgs_id foreign key references imgs(id)
 );
 
 create table main_imgs(
-constraint pid foreign key references model(id) match simple on update cascade,
-constraint imgs_id foreign key references imgs(id) match simple on update cascade
+constraint pid foreign key references model(id),
+constraint imgs_id foreign key references imgs(id)
 );
 
 create table imgs(
@@ -28,13 +30,13 @@ link char(30)
 );
 
 create table sub_category(
-constraint pid foreign key references model(id) match simple on update cascade,
-constraint category_id foreign key references category(id) match simple on update cascade
+constraint pid foreign key references model(id),
+constraint category_id foreign key references category(id)
 );
 
 create table main_category(
-constraint pid foreign key references model(id) match simple on update cascade,
-constraint category_id foreign key references category(id) match simple on update cascade
+constraint pid foreign key references model(id),
+constraint category_id foreign key references category(id)
 );
 
 create table category(
@@ -236,21 +238,16 @@ insert into sub_imgs (pid, imgs_id) values
 (1, 'Фланель из хлопка плотностью 260 г/кв. м. Уютный классический крой, на пуговицах и с капюшоном. Два нагрудных кармана с клапаном на утяжках', 4200, 3999, 3499, 'Рубашка с капюшоном DC Shoes', 'yes'),
 (2, 'Фланель из хлопка плотностью 260 г/кв. м. Уютный классический крой, на пуговицах и с капюшоном. Два нагрудных кармана с клапаном на утяжках', 4200, 3999, 3499, 'Рубашка с капюшоном DC Shoes', 'no'),
 (3, 'Фланель из хлопка плотностью 260 г/кв. м. Уютный классический крой, на пуговицах и с капюшоном. Два нагрудных кармана с клапаном на утяжках', 4200, 3999, 3499, 'Рубашка с капюшоном DC Shoes', 'yes'),
-
 (4, 'Фланель из хлопка плотностью 60 г/кв. м. Уютный классический крой, воротник на пуговицах. Нагрудные карманы на пуговицах. С легким начесом для мягкости', 2499, 2300, 2100, 'Рубашка DC Shoes', 'no'),
 (5, 'Фланель из хлопка плотностью 60 г/кв. м. Уютный классический крой, воротник на пуговицах. Нагрудные карманы на пуговицах. С легким начесом для мягкости', 2499, 2300, 2100, 'Рубашка DC Shoes', 'yes'),
-
 (6, 'Мягкая джерси средней плотности. Уютный классический крой, круглый вырез. В полоску, вышивка на груди', 3999, 3500, 3100, 'Футболка DC Shoes', 'yes'),
 (7, 'Мягкая джерси средней плотности. Уютный классический крой, круглый вырез. В полоску, вышивка на груди', 3999, 3500, 3100, 'Футболка DC Shoes', 'yes'),
-
 (8, 'Ткань плотностью 230 г/кв. м перекрестного окрашивания. Уютный классический крой, втачной крой на груди. Принт на груди', 6799, 6200, 5999, 'Кофта DC Shoes', 'no'),
 (9, 'Ткань плотностью 230 г/кв. м перекрестного окрашивания. Уютный классический крой, втачной крой на груди. Принт на груди', 6799, 6200, 5999, 'Кофта DC Shoes', 'yes'),
 (10, 'Ткань плотностью 230 г/кв. м перекрестного окрашивания. Уютный классический крой, втачной крой на груди. Принт на груди', 6799, 6200, 5999, 'Кофта DC Shoes', 'yes'),
-
 (11, 'Детали: круглый вырез горловины, горловина и проймы обработаны рибаной, длина до линии бедер, прямой свободный силуэт', 980, 850, 799, 'Майка ДимASS', 'no'),
-
 (12, 'Детали: круглый вырез горловины, горловина и проймы обработаны рибаной, длина до линии бедер, прямой свободный силуэт', 1099, 1000, 900, 'Майка Kitogawa', 'yes'),
 (13, 'Детали: круглый вырез горловины, горловина и проймы обработаны рибаной, длина до линии бедер, прямой свободный силуэт', 1099, 1000, 900, 'Майка Kitogawa', 'yes'),
-
 (14, 'Детали: круглый вырез горловины, горловина и проймы обработаны рибаной, длина до линии бедер, прямой свободный силуэт', 1099, 1000, 900, 'Майка Rei', 'no'),
 (15, 'Детали: круглый вырез горловины, горловина и проймы обработаны рибаной, длина до линии бедер, прямой свободный силуэт', 1099, 1000, 900, 'Майка Rei', 'yes');
+use cloth;
